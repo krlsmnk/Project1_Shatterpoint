@@ -16,3 +16,5 @@ MonoBehaviour:
   - eventName: move.up
   - eventName: move.down
   - eventName: sound.play
+  - eventName: move.left
+  - eventName: move.right
