@@ -18,3 +18,4 @@ MonoBehaviour:
   - eventName: sound.play
   - eventName: move.left
   - eventName: move.right
+  - eventName: camera.shake
