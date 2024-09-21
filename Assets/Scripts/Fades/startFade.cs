@@ -7,9 +7,20 @@ public class CanvasFadeOut : MonoBehaviour
     private CanvasGroup canvasGroup;
 
     // Duration to wait before starting the fade
-    public float delay = 2f;
+    // public float delay = 2f;
+
     // Duration of the fade-out effect
-    public float fadeDuration = 1f;
+    private float fadeDuration = 1f;
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener("intro.begin", BeginFadeOut);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveListener("intro.begin", BeginFadeOut);
+    }
 
     void Start()
     {
@@ -18,8 +29,6 @@ public class CanvasFadeOut : MonoBehaviour
 
         if (canvasGroup != null)
         {
-            // Start the fade-out coroutine after the specified delay
-            StartCoroutine(FadeOutCanvas());
         }
         else
         {
@@ -27,10 +36,16 @@ public class CanvasFadeOut : MonoBehaviour
         }
     }
 
+    void BeginFadeOut(AudioClip clip, float duration)
+    {
+        fadeDuration = duration;
+        StartCoroutine(FadeOutCanvas());
+    }
+
     IEnumerator FadeOutCanvas()
     {
         // Wait for the initial delay
-        yield return new WaitForSeconds(delay);
+        // yield return new WaitForSeconds(delay);
 
         // Gradually reduce the alpha over time
         float elapsedTime = 0f;
