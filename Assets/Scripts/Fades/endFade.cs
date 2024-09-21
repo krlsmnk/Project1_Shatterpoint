@@ -8,9 +8,21 @@ public class CanvasFadeToImage : MonoBehaviour
     public RawImage customImageFade;
 
     // Duration to wait before starting the fade
-    public float delay = 2f;
+    // public float delay = 2f;
+
     // Duration of the fade-out effect
-    public float fadeDuration = 1f;
+    private float fadeDuration = 1f;
+
+
+    private void OnEnable()
+    {
+        EventManager.Instance.AddListener("outro.begin", BeginFadeOut);
+    }
+
+    private void OnDisable()
+    {
+        EventManager.Instance.RemoveListener("outro.begin", BeginFadeOut);
+    }
 
     void Start()
     {
@@ -19,8 +31,6 @@ public class CanvasFadeToImage : MonoBehaviour
             // Ensure the custom image starts fully transparent
             customImageFade.color = new Color(1f, 1f, 1f, 0f);
 
-            // Start the fade-out coroutine after the specified delay
-            StartCoroutine(FadeToCustomImage());
         }
         else
         {
@@ -28,10 +38,16 @@ public class CanvasFadeToImage : MonoBehaviour
         }
     }
 
+    void BeginFadeOut(AudioClip clip, float duration)
+    {
+        fadeDuration = duration;
+        StartCoroutine(FadeToCustomImage());
+    }
+
     IEnumerator FadeToCustomImage()
     {
         // Wait for the initial delay
-        yield return new WaitForSeconds(delay);
+        // yield return new WaitForSeconds(delay);
 
         // Gradually increase the alpha over time to fade in the custom image
         float elapsedTime = 0f;

@@ -19,3 +19,5 @@ MonoBehaviour:
   - eventName: move.left
   - eventName: move.right
   - eventName: camera.shake
+  - eventName: intro.begin
+  - eventName: outro.begin
