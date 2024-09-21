@@ -377,7 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb66bd9649bc4670a780ad597d0322c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRawImage: {fileID: 1915216992}
+  delay: 2
+  fadeDuration: 1
 --- !u!225 &682675202
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -402,7 +403,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb66bd9649bc4670a780ad597d0322c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  targetRawImage: {fileID: 0}
+  delay: 2
+  fadeDuration: 1
 --- !u!1 &1915216990
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,7 +417,7 @@ GameObject:
   - component: {fileID: 1915216993}
   - component: {fileID: 1915216992}
   m_Layer: 5
-  m_Name: RawImage
+  m_Name: startImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -487,7 +489,7 @@ GameObject:
   - component: {fileID: 1943676675}
   - component: {fileID: 1943676674}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: startText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
