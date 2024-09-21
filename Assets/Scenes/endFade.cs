@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI; // Make sure to include this for UI components
+using UnityEngine.UI;
 
-public class CanvasFadeToBlack : MonoBehaviour
+public class CanvasFadeToImage : MonoBehaviour
 {
-    // Reference to the RawImage component (used to create the black fade)
-    public RawImage blackScreen;
+    // Reference to the RawImage component (used to create the fade effect)
+    public RawImage customImageFade;
 
     // Duration to wait before starting the fade
     public float delay = 2f;
@@ -14,13 +14,13 @@ public class CanvasFadeToBlack : MonoBehaviour
 
     void Start()
     {
-        if (blackScreen != null)
+        if (customImageFade != null)
         {
-            // Set the image to fully transparent black
-            blackScreen.color = new Color(0f, 0f, 0f, 0f);
+            // Ensure the custom image starts fully transparent
+            customImageFade.color = new Color(1f, 1f, 1f, 0f);
 
             // Start the fade-out coroutine after the specified delay
-            StartCoroutine(FadeToBlack());
+            StartCoroutine(FadeToCustomImage());
         }
         else
         {
@@ -28,22 +28,22 @@ public class CanvasFadeToBlack : MonoBehaviour
         }
     }
 
-    IEnumerator FadeToBlack()
+    IEnumerator FadeToCustomImage()
     {
         // Wait for the initial delay
         yield return new WaitForSeconds(delay);
 
-        // Gradually increase the alpha over time to fade to black
+        // Gradually increase the alpha over time to fade in the custom image
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
-            blackScreen.color = new Color(0f, 0f, 0f, alpha);
+            customImageFade.color = new Color(1f, 1f, 1f, alpha); // Keep RGB at 1 to maintain your image color
             yield return null;
         }
 
         // Ensure the alpha is set to 1 at the end
-        blackScreen.color = new Color(0f, 0f, 0f, 1f);
+        customImageFade.color = new Color(1f, 1f, 1f, 1f);
     }
 }
