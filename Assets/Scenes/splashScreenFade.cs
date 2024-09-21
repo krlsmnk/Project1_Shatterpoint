@@ -1,18 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class FadeInEffect : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float fadeDuration = 2.0f; // Duration for the fade-in effect in seconds
+    private CanvasGroup canvasGroup;
+    private float fadeElapsedTime = 0f;
+    private bool fadingIn = true;
+
     void Start()
     {
-        
+        // Get the CanvasGroup component
+        canvasGroup = GetComponent<CanvasGroup>();
+
+        // Start with a fully transparent canvas
+        canvasGroup.alpha = 0f;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (fadingIn)
+        {
+            // Increment elapsed time
+            fadeElapsedTime += Time.deltaTime;
+
+            // Calculate the new alpha value
+            canvasGroup.alpha = Mathf.Clamp01(fadeElapsedTime / fadeDuration);
+
+            // Check if the fade-in is complete
+            if (canvasGroup.alpha >= 1f)
+            {
+                fadingIn = false;
+            }
+        }
     }
 }
