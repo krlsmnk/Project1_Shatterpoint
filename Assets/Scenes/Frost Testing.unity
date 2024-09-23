@@ -796,6 +796,7 @@ GameObject:
   m_Component:
   - component: {fileID: 136450164}
   - component: {fileID: 136450165}
+  - component: {fileID: 136450166}
   m_Layer: 0
   m_Name: Impact1
   m_TagString: Untagged
@@ -914,6 +915,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &136450166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 136450163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09a6cf532ee49a4da86c2317e196040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  glassCrackPrefab: {fileID: 6183173354623198272, guid: cc28c927556de634fa218eb3fbbe2822, type: 3}
+  window: {fileID: 136450164}
+  d1: 0.3
+  d2: 3
+  d3: 1.7
+  d4: 1.5
 --- !u!1 &151538344 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2082521007005314380, guid: 3f36d6e3671cb4546b98384a51016ec5, type: 3}
@@ -4189,7 +4208,7 @@ MonoBehaviour:
   - eventName: DepressurizationCabin
     delay: 35.75
   - eventName: Impact2
-    delay: 38.5
+    delay: 38.2
   - eventName: GlassShatter
     delay: 40
   - eventName: AirRush
@@ -4787,7 +4806,7 @@ MonoBehaviour:
   endLocation1: {fileID: 1184500036}
   endLocation2: {fileID: 948878672}
   timeToImpact1: 5.3
-  timeToImpact2: 12.5
+  timeToImpact2: 12.2
 --- !u!1001 &1977478115
 PrefabInstance:
   m_ObjectHideFlags: 0
