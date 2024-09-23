@@ -41,7 +41,13 @@ public class ELK_3dAudio : MonoBehaviour
             case "SplashScreen":
                 Destroy(gameObject);
                 break;
-
+            case "DepressurizationCabin":
+                transform.Find("DepressurizationCabin").GetComponent<AudioSource>().Play();
+                transform.Find("Impact2").GetComponent<AudioSource>().Play();
+                break;
+            case "Impact2":
+                //doNothing, audiop already playing
+                break;
             default:
                 // Default behavior: find an AudioSource with the same name as the event and play it
                 var audioSource = transform.Find(eventName)?.GetComponent<AudioSource>();
