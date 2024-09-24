@@ -10,7 +10,7 @@ public class ELK_Player : MonoBehaviour
     public float fadeOutTime = 2f;  // Time for screen fade out
     public float fadeInTime = 2f;  // Time for screen fade in
 
-    public Transform Visor;
+    public Transform Visor, helmet, suckLocation;
     public RawImage screenFadeImage; // Reference to the RawImage used for fading the screen
     private Material visorMaterial;  // Store the material of the visor
     private Camera playerCamera;  // Reference to the player's camera
@@ -57,6 +57,10 @@ public class ELK_Player : MonoBehaviour
                 break;
             case "AirRush":
                 StartCoroutine(AdjustVisorTransparencyAndDistortion(0.05f, 1f, defrostTime));
+                //Suck the player 
+                StartCoroutine(MoveObject(gameObject.transform, suckLocation, 5.7f, false));
+                //Suck the helmet
+                //StartCoroutine(MoveObject(helmet.transform, suckLocation, 5.7f, true));
                 break;
         }
     }
@@ -101,4 +105,32 @@ public class ELK_Player : MonoBehaviour
         // Ensure final alpha is set correctly
         screenFadeImage.color = new Color(currentColor.r, currentColor.g, currentColor.b, targetAlpha);
     }
+
+    private IEnumerator MoveObject(Transform objectToMove, Transform endLocation, float duration, bool tumble)
+    {
+       // Random axis of rotation
+        Vector3 randomRotationAxis = Random.onUnitSphere;  // A random axis
+        float elapsedTime = 0f;
+
+        // Initial position
+        Vector3 initialPosition = objectToMove.position;
+        Vector3 targetPosition = endLocation.position;
+
+        while (elapsedTime < duration)
+        {
+            // Move asteroid towards target over time
+            float t = elapsedTime / duration;
+            objectToMove.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
+
+            // Apply random rotation over time
+            if(tumble) objectToMove.transform.Rotate(randomRotationAxis, 360 * Time.deltaTime);
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // Ensure the objectToMove reaches the exact target position
+        objectToMove.transform.position = targetPosition;
+    }
+
 }

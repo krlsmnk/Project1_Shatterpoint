@@ -1,14 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Mathematics;
 
 public class ELK_GlassCracks : MonoBehaviour
 {
     public GameObject glassCrackPrefab;  // Assign the GlassCrack decal prefab in the Inspector
     public Transform window;             // The window GameObject where the cracks will appear
+    public List<Transform> objectsToDelete = new List<Transform>();
     public float d1 = 1f;                // Delay for first crack
     public float d2 = 2f;                // Delay for second crack
     public float d3 = 3f;                // Delay for third crack
     public float d4 = 4f;                // Delay for fourth crack
+    public GameObject glassRuptureParticles;
 
     private void OnEnable()
     {
@@ -26,6 +30,20 @@ public class ELK_GlassCracks : MonoBehaviour
         if (eventName == "GlassCrack")
         {
             StartCoroutine(SpawnGlassCracks());
+        }
+        else if (eventName == "GlassShatter")
+        {
+            foreach (Transform t in objectsToDelete) { 
+                t.gameObject.SetActive(false);
+            }
+
+            // Create a new Quaternion with 180 degrees rotation on the X axis
+            Quaternion rotation = transform.rotation * Quaternion.Euler(180f, 0f, 0f);
+            // Instantiate the object at the current position, with modified rotation
+            GameObject instantiatedParticles = Instantiate(glassRuptureParticles, transform.position, rotation);
+            // Set the scale to 50x on all axes
+            instantiatedParticles.transform.localScale = new Vector3(25f, 25f, 10f);
+
         }
     }
 
@@ -63,7 +81,23 @@ public class ELK_GlassCracks : MonoBehaviour
 
             // Apply the scale to the spawned crack
             crackInstance.transform.localScale = new Vector3(scale, scale, scale);
-            Debug.LogWarning("Spawned");
+            objectsToDelete.Add(crackInstance.transform);
+
+            // Access the Particle System's Main module
+            ParticleSystem particleSystem = crackInstance.GetComponent<ParticleSystem>();
+
+            // Ensure the particle system exists
+            if (particleSystem != null)
+            {
+                var particleSystemMain = particleSystem.main; // Get the main module (this is safe because it's a reference type)
+
+                // Adjust the start rotation for the X and Y axes using UnityEngine.Random
+                particleSystemMain.startRotationX = particleSystemMain.startRotationX.constant + Mathf.Deg2Rad * UnityEngine.Random.Range(-45f, 45f);
+                particleSystemMain.startRotationY = particleSystemMain.startRotationY.constant + Mathf.Deg2Rad * UnityEngine.Random.Range(-45f, 45f);
+            }
+
+
+            //Debug.LogWarning("Spawned");
         }
         else
         {
