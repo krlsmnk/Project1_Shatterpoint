@@ -5,7 +5,7 @@ using Unity.Mathematics;
 
 public class ELK_GlassCracks : MonoBehaviour
 {
-    public GameObject glassCrackPrefab;  // Assign the GlassCrack decal prefab in the Inspector
+    public GameObject glassCrackPrefab, explosionPrefab;  // Assign the GlassCrack decal prefab in the Inspector
     public Transform window;             // The window GameObject where the cracks will appear
     public List<Transform> objectsToDelete = new List<Transform>();
     public float d1 = 1f;                // Delay for first crack
@@ -27,6 +27,10 @@ public class ELK_GlassCracks : MonoBehaviour
     // Event handler that gets triggered by EventManagerKarl
     public void EventHandler(string eventName)
     {
+        if (eventName == "Impact1" || eventName == "Impact2")
+        {
+            Instantiate(explosionPrefab, gameObject.transform.position, window.rotation, window);
+        }
         if (eventName == "GlassCrack")
         {
             StartCoroutine(SpawnGlassCracks());

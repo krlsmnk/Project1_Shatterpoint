@@ -929,6 +929,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   glassCrackPrefab: {fileID: 6183173354623198272, guid: cc28c927556de634fa218eb3fbbe2822, type: 3}
+  explosionPrefab: {fileID: 3352391191284423565, guid: 9571e0e1b1e65834cbba759493c171d3, type: 3}
   window: {fileID: 136450164}
   objectsToDelete:
   - {fileID: 388464426}
