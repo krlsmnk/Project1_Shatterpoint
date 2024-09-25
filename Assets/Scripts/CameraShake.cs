@@ -45,6 +45,19 @@ public class VRShake : MonoBehaviour
         shakeCoroutine = StartCoroutine(Shake());
     }
 
+    //added overload method that doesn't require unused clip - Karl
+    public void ShakeVR(float duration)
+    {
+
+        shakeDuration = duration;
+
+        if (shakeCoroutine != null)
+        {
+            StopCoroutine(shakeCoroutine);
+        }
+        shakeCoroutine = StartCoroutine(Shake());
+    }
+
     IEnumerator Shake()
     {
         float elapsed = 0.0f;
