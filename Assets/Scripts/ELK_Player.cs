@@ -50,7 +50,7 @@ public class ELK_Player : MonoBehaviour
                 StartCoroutine(FadeScreenToAlpha(0, fadeInTime)); // Fade back to transparent
                 break;
             case "DepressurizationCabin":
-                StartCoroutine(AdjustVisorTransparencyAndDistortion(0,0.05f, defrostTime));
+                StartCoroutine(AdjustVisorTransparencyAndDistortion(0, 0.05f, defrostTime));
                 break;
             case "Impact2":
                 GetComponent<VRShake>().ShakeVR(shakeDuration);
@@ -108,7 +108,7 @@ public class ELK_Player : MonoBehaviour
 
     private IEnumerator MoveObject(Transform objectToMove, Transform endLocation, float duration, bool tumble)
     {
-       // Random axis of rotation
+        // Random axis of rotation
         Vector3 randomRotationAxis = Random.onUnitSphere;  // A random axis
         float elapsedTime = 0f;
 
@@ -123,7 +123,7 @@ public class ELK_Player : MonoBehaviour
             objectToMove.transform.position = Vector3.Lerp(initialPosition, targetPosition, t);
 
             // Apply random rotation over time
-            if(tumble) objectToMove.transform.Rotate(randomRotationAxis, 360 * Time.deltaTime);
+            if (tumble) objectToMove.transform.Rotate(randomRotationAxis, 360 * Time.deltaTime);
 
             elapsedTime += Time.deltaTime;
             yield return null;
