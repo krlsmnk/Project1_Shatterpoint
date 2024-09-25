@@ -21,3 +21,7 @@ MonoBehaviour:
   - eventName: camera.shake
   - eventName: intro.begin
   - eventName: outro.begin
+  - eventName: cryo.light.fade
+  - eventName: exterior.light.fade
+  - eventName: exterior.light.break
+  - eventName: explosion.flash
