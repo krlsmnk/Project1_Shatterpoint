@@ -6,7 +6,8 @@ public class ExplosionLight : MonoBehaviour
 {
 
     private float fadeDuration = 1f;
-    public float maxIntensity = 1000f;
+    public float shortMaxIntensity = 1000f;
+    public float longMaxIntensity = 10000f;
 
     // Start is called before the first frame update
     void Start()
@@ -16,27 +17,46 @@ public class ExplosionLight : MonoBehaviour
 
     private void OnEnable()
     {
-        EventManager.Instance.AddListener("explosion.flash", BeginShortFlash);
+        EventManager.Instance.AddListener("explosion.flash.short", BeginShortFlash);
+        EventManager.Instance.AddListener("explosion.flash.long", BeginLongFlash);
     }
 
     private void OnDisable()
     {
-        EventManager.Instance.RemoveListener("explosion.flash", BeginShortFlash);
+        EventManager.Instance.RemoveListener("explosion.flash.short", BeginShortFlash);
+        EventManager.Instance.RemoveListener("explosion.flash.long", BeginLongFlash);
     }
 
     void BeginShortFlash(AudioClip clip, float duration)
     {
-        StartCoroutine(FlashLight());
+        StartCoroutine(FlashLightShort());
     }
 
-    IEnumerator FlashLight()
+    void BeginLongFlash(AudioClip clip, float duration)
     {
-        GetComponent<Light>().intensity = maxIntensity;
+        StartCoroutine(FlashLightLong());
+    }
+
+    IEnumerator FlashLightLong()
+    {
+        GetComponent<Light>().intensity = longMaxIntensity;
         float elapsedTime = 0f;
         while (elapsedTime < fadeDuration)
         {
             elapsedTime += Time.deltaTime;
-            GetComponent<Light>().intensity = Mathf.Lerp(maxIntensity, 0f, elapsedTime / fadeDuration);
+            GetComponent<Light>().intensity = Mathf.Lerp(longMaxIntensity, 0f, elapsedTime / fadeDuration);
+            yield return null;
+        }
+    }
+
+    IEnumerator FlashLightShort()
+    {
+        GetComponent<Light>().intensity = shortMaxIntensity;
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeDuration)
+        {
+            elapsedTime += Time.deltaTime;
+            GetComponent<Light>().intensity = Mathf.Lerp(shortMaxIntensity, 0f, elapsedTime / fadeDuration);
             yield return null;
         }
     }

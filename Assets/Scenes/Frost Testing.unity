@@ -2601,6 +2601,10 @@ PrefabInstance:
       propertyPath: screenFadeImage
       value: 
       objectReference: {fileID: 6358716678864884289}
+    - target: {fileID: 8694741610711919454, guid: 79243612b4bfc4bf78a9f315debdb9b7, type: 3}
+      propertyPath: shakeMagnitude
+      value: 0.4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2782,7 +2786,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a284421733165fb44b20346395893765, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.3
+  m_Volume: 0.33
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -5699,7 +5703,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79bbac8c45e3a4190a39b19b50c9e709, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxIntensity: 1000
+  shortMaxIntensity: 1000
+  longMaxIntensity: 10000
 --- !u!1 &1657606192
 GameObject:
   m_ObjectHideFlags: 0
@@ -5931,11 +5936,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[1].events.Array.data[1].delay
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[1].events.Array.data[2].delay
-      value: 4.58
+      value: 3.58
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[2].events.Array.data[0].delay
@@ -6003,11 +6008,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[2].events.Array.data[0].eventName
-      value: explosion.flash
+      value: explosion.flash.short
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[2].events.Array.data[1].eventName
-      value: explosion.flash
+      value: explosion.flash.long
       objectReference: {fileID: 0}
     - target: {fileID: 5872367790781226458, guid: af086e5925583443eb051a13a4e86ed5, type: 3}
       propertyPath: eventCollections.Array.data[2].events.Array.data[2].eventName
@@ -6763,7 +6768,7 @@ MonoBehaviour:
   asteroid: {fileID: 1904657898}
   startLocation1: {fileID: 1603647058}
   startLocation2: {fileID: 1703727987}
-  impactLocation: {fileID: 1591513285}
+  impactLocation: {fileID: 1987734239}
   endLocation1: {fileID: 1184500036}
   endLocation2: {fileID: 948878672}
   timeToImpact1: 5.3
@@ -6863,6 +6868,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4bc199cc0f15c4d00865cf644982cad0, type: 3}
+--- !u!1 &1987734238
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1987734239}
+  m_Layer: 0
+  m_Name: ImpactLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1987734239
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1987734238}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2632532, y: 19.091187, z: -31.72}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2001895428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7631,6 +7667,7 @@ SceneRoots:
   - {fileID: 2001895428}
   - {fileID: 1384737775}
   - {fileID: 1850650527}
+  - {fileID: 1987734239}
   - {fileID: 568253961}
   - {fileID: 787809303}
   - {fileID: 1051215233}
