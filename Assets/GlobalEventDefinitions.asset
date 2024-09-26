@@ -24,4 +24,5 @@ MonoBehaviour:
   - eventName: cryo.light.fade
   - eventName: exterior.light.fade
   - eventName: exterior.light.break
-  - eventName: explosion.flash
+  - eventName: explosion.flash.short
+  - eventName: explosion.flash.long
